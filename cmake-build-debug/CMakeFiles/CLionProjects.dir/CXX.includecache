@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/user/CLionProjects/untitled/main.cpp
+/home/user/CLionProjects/solvert/untitled/main.cpp
 iostream
 -
 vector
@@ -16,9 +16,9 @@ algorithm
 chrono
 -
 mine.h
-/home/user/CLionProjects/untitled/mine.h
+/home/user/CLionProjects/solvert/untitled/mine.h
 math.h
 -
 
-/home/user/CLionProjects/untitled/mine.h
+/home/user/CLionProjects/solvert/untitled/mine.h
 

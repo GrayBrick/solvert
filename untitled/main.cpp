@@ -63,6 +63,14 @@ public :
     {
         this->block = block;
     }
+
+    template <class E>
+    inline uint16_t get_distance(Loc <E>point_2)
+    {
+       return sqrt((this->x - point_2.getX()) * (this->x - point_2.getX()) +
+                   (this->y - point_2.getY()) * (this->y - point_2.getY()) +
+                   (this->z - point_2.getZ()) * (this->z - point_2.getZ()));
+    }
 };
 
 uint8_t get_interval_i(int16_t a, int16_t b)
@@ -160,7 +168,7 @@ public:
         if (distance < 3)
             return Loc<uint8_t>(0, 0, 0);
 
-        intensive = distance * intensive;
+        intensive = distance * intensive > 1.0 ? distance * intensive : 1;
 
         int8_t buf;
         i = -1;
@@ -168,14 +176,31 @@ public:
         {
             while (true)
             {
-                buf = vector[i] / 2 + (rand() % (int)intensive) - intensive / 2;
-                if (buf > 0 && buf < size)
+                buf = vector[i] / 2 + (rand() % (int)intensive) - (int)intensive / 2;
+                if (buf >= 0 && buf < size)
                     break ;
             }
             vector[i] = buf;
         }
 
+        vector[0] += point_1.getX() < point_2.getX() ? point_1.getX() : point_2.getX();
+        vector[1] += point_1.getY() < point_2.getY() ? point_1.getY() : point_2.getY();
+        vector[2] += point_1.getZ() < point_2.getZ() ? point_1.getZ() : point_2.getZ();
+
         return Loc<uint8_t>(vector[0], vector[1], vector[2]);
+    }
+
+    void add_points_dis(Loc <uint8_t>point_1, Loc <uint8_t>point_2, std::vector<Loc <uint8_t>> *worm, u_char dis, float intensive)
+    {
+        if (point_1.get_distance(point_2) < dis)
+            return ;
+        auto point_1_2 = get_midpoint(point_1, point_2, intensive);
+
+        //std::cout << point_1.get_distance(point_2) << " - " << point_1_2.get_distance(point_1) << std::endl;
+
+        worm->push_back(point_1_2);
+        add_points_dis(point_1, point_1_2, worm, dis, intensive);
+        add_points_dis(point_2, point_1_2, worm, dis, intensive);
     }
 
     void set_tunnel(uint8_t rx, uint8_t ry, uint8_t rz)
@@ -212,31 +237,58 @@ public:
             point_2.setY(size - ry);
         }
 
-        while (true)
-        {
+        std::vector<Loc <uint8_t>> *worm = new std::vector<Loc <uint8_t>>();
 
+        worm->push_back(point_1);
+        worm->push_back(point_2);
+
+        add_points_dis(point_1, point_2, worm, 5, 1);
+
+        std::cout << worm->size() << std::endl;
+
+        std::sort(worm->begin(), worm->end(), [](Loc <uint8_t> a1, Loc <uint8_t> a2) {
+            if (a1.getX() != a2.getX())
+                return a1.getX() < a2.getX();
+            if (a1.getY() != a2.getY())
+                return a1.getY() < a2.getY();
+            return a1.getZ() < a2.getZ();
+        });
+
+        char **pole;
+        int     x;
+        int     i;
+
+        pole = (char **)malloc(sizeof(char *) * 80);
+        x = -1;
+        while (++x < 80)
+        {
+            pole[x] = (char *)malloc(sizeof(char) * 80);
+            i = -1;
+            while (++i < 80)
+            {
+                pole[x][i] = '.';
+            }
         }
-        get_midpoint(point_1, point_2, 1);
-//        c++;
-//
-        double diag = sqrt((point_1.getX() - point_2.getX()) * (point_1.getX() - point_2.getX()) +
-                        (point_1.getY() - point_2.getY()) * (point_1.getY() - point_2.getY()) +
-                        (point_1.getZ() - point_2.getZ()) * (point_1.getZ() - point_2.getZ()));
-//        if (!dia)
-//            dia = diag;
-//        else
-//        {
-//            dia = (dia * (c - 1) + diag) / c;
-//        }
-//
-//        std::cout << sqrt((point_1.getX() - point_2.getX()) * (point_1.getX() - point_2.getX()) +
-//                     (point_1.getY() - point_2.getY()) * (point_1.getY() - point_2.getY()) +
-//                     (point_1.getZ() - point_2.getZ()) * (point_1.getZ() - point_2.getZ())) << " - " <<
-//                     sqrt((point_1.getX() - point_2.getX()) * (point_1.getX() - point_2.getX())) << " " <<
-//                     sqrt((point_1.getY() - point_2.getY()) * (point_1.getY() - point_2.getY())) << " " <<
-//                     sqrt((point_1.getZ() - point_2.getZ()) * (point_1.getZ() - point_2.getZ())) << " " << "dia = " << dia <<
-//
-//                     std::endl;
+
+
+        for (auto el : *worm)
+        {
+            std::cout << (int)el.getX() << " " << (int)el.getY() << " " << (int)el.getZ() << std::endl;
+            pole[el.getX()][el.getZ()] = '0';
+        }
+
+        x = -1;
+        while (++x < 80)
+        {
+            i = -1;
+            while (++i < 80)
+            {
+                std::cout << pole[x][i];
+            }
+            std::cout << std::endl;
+        }
+
+        delete worm;
     }
 };
 
@@ -295,7 +347,6 @@ int main()
         auto timerResult = std::chrono::duration_cast<std::chrono::milliseconds>(second - first).count();
         std::cout << "all time: " << timerResult << std::endl;
     }
-
 
     return 0;
 }

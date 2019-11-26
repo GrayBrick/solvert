@@ -48,10 +48,10 @@ RM = /home/user/Загрузки/clion-2019.2.5/bin/cmake/linux/bin/cmake -E rem
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/CLionProjects
+CMAKE_SOURCE_DIR = /home/user/CLionProjects/solvert
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/CLionProjects/cmake-build-debug
+CMAKE_BINARY_DIR = /home/user/CLionProjects/solvert/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/CLionProjects/cmake-build-debug/CMakeFiles /home/user/CLionProjects/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles /home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/CLionProjects/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

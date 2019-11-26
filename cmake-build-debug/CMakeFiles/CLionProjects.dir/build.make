@@ -43,10 +43,10 @@ RM = /home/user/Загрузки/clion-2019.2.5/bin/cmake/linux/bin/cmake -E rem
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/CLionProjects
+CMAKE_SOURCE_DIR = /home/user/CLionProjects/solvert
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/CLionProjects/cmake-build-debug
+CMAKE_BINARY_DIR = /home/user/CLionProjects/solvert/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CLionProjects.dir/depend.make
@@ -59,29 +59,29 @@ include CMakeFiles/CLionProjects.dir/flags.make
 
 CMakeFiles/CLionProjects.dir/untitled/main.cpp.o: CMakeFiles/CLionProjects.dir/flags.make
 CMakeFiles/CLionProjects.dir/untitled/main.cpp.o: ../untitled/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/CLionProjects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CLionProjects.dir/untitled/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CLionProjects.dir/untitled/main.cpp.o -c /home/user/CLionProjects/untitled/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CLionProjects.dir/untitled/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CLionProjects.dir/untitled/main.cpp.o -c /home/user/CLionProjects/solvert/untitled/main.cpp
 
 CMakeFiles/CLionProjects.dir/untitled/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CLionProjects.dir/untitled/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/CLionProjects/untitled/main.cpp > CMakeFiles/CLionProjects.dir/untitled/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/CLionProjects/solvert/untitled/main.cpp > CMakeFiles/CLionProjects.dir/untitled/main.cpp.i
 
 CMakeFiles/CLionProjects.dir/untitled/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CLionProjects.dir/untitled/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/CLionProjects/untitled/main.cpp -o CMakeFiles/CLionProjects.dir/untitled/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/CLionProjects/solvert/untitled/main.cpp -o CMakeFiles/CLionProjects.dir/untitled/main.cpp.s
 
 CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o: CMakeFiles/CLionProjects.dir/flags.make
 CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o: ../untitled/mine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/CLionProjects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o -c /home/user/CLionProjects/untitled/mine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o -c /home/user/CLionProjects/solvert/untitled/mine.cpp
 
 CMakeFiles/CLionProjects.dir/untitled/mine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CLionProjects.dir/untitled/mine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/CLionProjects/untitled/mine.cpp > CMakeFiles/CLionProjects.dir/untitled/mine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/CLionProjects/solvert/untitled/mine.cpp > CMakeFiles/CLionProjects.dir/untitled/mine.cpp.i
 
 CMakeFiles/CLionProjects.dir/untitled/mine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CLionProjects.dir/untitled/mine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/CLionProjects/untitled/mine.cpp -o CMakeFiles/CLionProjects.dir/untitled/mine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/CLionProjects/solvert/untitled/mine.cpp -o CMakeFiles/CLionProjects.dir/untitled/mine.cpp.s
 
 # Object files for target CLionProjects
 CLionProjects_OBJECTS = \
@@ -95,7 +95,7 @@ CLionProjects: CMakeFiles/CLionProjects.dir/untitled/main.cpp.o
 CLionProjects: CMakeFiles/CLionProjects.dir/untitled/mine.cpp.o
 CLionProjects: CMakeFiles/CLionProjects.dir/build.make
 CLionProjects: CMakeFiles/CLionProjects.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/CLionProjects/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CLionProjects"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CLionProjects"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CLionProjects.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -108,6 +108,6 @@ CMakeFiles/CLionProjects.dir/clean:
 .PHONY : CMakeFiles/CLionProjects.dir/clean
 
 CMakeFiles/CLionProjects.dir/depend:
-	cd /home/user/CLionProjects/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/user/CLionProjects /home/user/CLionProjects /home/user/CLionProjects/cmake-build-debug /home/user/CLionProjects/cmake-build-debug /home/user/CLionProjects/cmake-build-debug/CMakeFiles/CLionProjects.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/user/CLionProjects/solvert/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/user/CLionProjects/solvert /home/user/CLionProjects/solvert /home/user/CLionProjects/solvert/cmake-build-debug /home/user/CLionProjects/solvert/cmake-build-debug /home/user/CLionProjects/solvert/cmake-build-debug/CMakeFiles/CLionProjects.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/CLionProjects.dir/depend
 
