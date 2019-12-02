@@ -2,8 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <chrono>
-#include "mine.h"
 #include <math.h>
+#include <set>
 
 #define mine_d std::vector<std::vector<std::vector<Loc<uint8_t>>>>
 
@@ -123,6 +123,7 @@ class mine
 {
     mine_d  _mine;
     uint8_t size;
+    std::vector<std::vector<Loc <uint8_t>>> worms;
 public:
     mine(uint8_t size, std::string block) : size(size)
     {
@@ -242,7 +243,7 @@ public:
         worm->push_back(point_1);
         worm->push_back(point_2);
 
-        add_points_dis(point_1, point_2, worm, 5, 1);
+        add_points_dis(point_1, point_2, worm, 5, 0.5);
 
         std::cout << worm->size() << std::endl;
 
@@ -254,38 +255,103 @@ public:
             return a1.getZ() < a2.getZ();
         });
 
-        char **pole;
-        int     x;
-        int     i;
+        int8_t x;
+        int8_t y;
+        int8_t z;
 
-        pole = (char **)malloc(sizeof(char *) * 80);
-        x = -1;
-        while (++x < 80)
+        std::vector<Loc<uint8_t>> *big_worm = new std::vector<Loc <uint8_t>>();
+
+        static int count = 0;
+
+        for (auto block : *worm)
         {
-            pole[x] = (char *)malloc(sizeof(char) * 80);
-            i = -1;
-            while (++i < 80)
+            x = -rx;
+            while (++x < rx)
             {
-                pole[x][i] = '.';
+                y = -ry;
+                while (++y < ry)
+                {
+                    z = -rz;
+                    while (++z < rz)
+                    {
+                        std::cout << (x * x) / ( 1.0 * (rx * rx)) + (y * y) / ( 1.0 * (ry * ry)) + (z * z) / ( 1.0 * (rz * rz)) << " " << 1 + (rand() % 100 - 50) / 100.0 << std::endl;
+                        if ((x * x) / ( 1.0 * (rx * rx)) + (y * y) / ( 1.0 * (ry * ry)) + (z * z) / ( 1.0 * (rz * rz)) < 1 + (rand() % 100 - 50) / 100.0 &&
+                        x + block.getX() > 0 &&
+                        x + block.getX() < size &&
+                        y + block.getY() > 0 &&
+                        y + block.getY() < size &&
+                        z + block.getZ() > 0 &&
+                        z + block.getZ() < size)
+                            _mine[x + block.getX()][y + block.getY()][z + block.getZ()].set_block("air");
+                    }
+                }
             }
         }
 
-
-        for (auto el : *worm)
-        {
-            std::cout << (int)el.getX() << " " << (int)el.getY() << " " << (int)el.getZ() << std::endl;
-            pole[el.getX()][el.getZ()] = '0';
-        }
+        worms.push_back(*worm);
 
         x = -1;
-        while (++x < 80)
+        while (++x < size)
         {
-            i = -1;
-            while (++i < 80)
+            y = -1;
+            while (++y < size)
             {
-                std::cout << pole[x][i];
+                int pr_in = false;
+                z = -1;
+                while (++z < size)
+                {
+                    if (_mine[x][y][z].get_block() == "air")
+                    {
+                        if (pr_in != 9)
+                        pr_in++;
+                    }
+                }
+                if (pr_in)
+                    std::cout << pr_in;
+                else
+                    std::cout << '.';
             }
-            std::cout << std::endl;
+            std::cout << "    ";
+
+            y = -1;
+            while (++y < size)
+            {
+                int pr_in = false;
+                z = -1;
+                while (++z < size)
+                {
+                    if (_mine[z][x][y].get_block() == "air")
+                    {
+                        if (pr_in != 9)
+                            pr_in++;
+                    }
+                }
+                if (pr_in)
+                    std::cout << pr_in;
+                else
+                    std::cout << '.';
+            }
+            std::cout << "    ";
+
+            y = -1;
+            while (++y < size)
+            {
+                int pr_in = false;
+                z = -1;
+                while (++z < size)
+                {
+                    if (_mine[y][z][x].get_block() == "air")
+                    {
+                        if (pr_in != 9)
+                            pr_in++;
+                    }
+                }
+                if (pr_in)
+                    std::cout << pr_in;
+                else
+                    std::cout << '.';
+            }
+            std::cout << '\n';
         }
 
         delete worm;
@@ -341,12 +407,13 @@ int main()
         int x = -1;
         while (++x < size)
         {
-            m.set_tunnel(5, 5, 5);
+            //m.set_tunnel(10, 10, 10);
+
+            m.set_tunnel(3 + get_rand(2, 0), 3 + get_rand(2, 0), 3 + get_rand(2, 0));
         }
         auto second = std::chrono::high_resolution_clock::now();
         auto timerResult = std::chrono::duration_cast<std::chrono::milliseconds>(second - first).count();
         std::cout << "all time: " << timerResult << std::endl;
     }
-
     return 0;
 }
